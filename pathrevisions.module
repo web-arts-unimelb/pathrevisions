@@ -108,7 +108,10 @@ function pathrevisions_save($path, $update = TRUE) {
  *   - language: (optional) The language of the alias.
  */
 function _pathrevisions_path($node) {
-  $path = $node->path;
+  $path = array();
+  if (isset($node->path) && !empty($node->path)) {
+    $path = $node->path;
+  }
 
   // If pathauto is enabled, look up the newly generated alias and
   // store that instead of the old one that's still in $node.
