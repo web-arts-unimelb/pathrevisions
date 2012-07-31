@@ -134,7 +134,7 @@ function _pathrevisions_path($node) {
   // When reverting a revision, if there is no $path['alias'], grab it
   // from the revision we're reverting to (or default to node/nid).
   if (!empty($node->revision) && !empty($node->original) && empty($path['alias'])) {
-    $path['alias'] = !empty($node->path_revisions[$node->old_vid]) ? $node->path_revisions[$node->old_vid]->alias : 'node/' . $node->nid;
+    $path['alias'] = !empty($node->path_revisions[$node->old_vid]) ? $node->path_revisions[$node->old_vid]->alias : '';
     $path['language'] = $node->original->language;
   }
 
