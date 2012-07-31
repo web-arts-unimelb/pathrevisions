@@ -80,7 +80,7 @@ function pathrevisions_save($path, $update = TRUE) {
   // Set the timestamp field. Always updated on save.
   $path['timestamp'] = REQUEST_TIME;
 
-  $status = drupal_write_record('path_revisions', $path, ($update) ? array() : array('nid', 'vid'));
+  $status = drupal_write_record('path_revisions', $path, ($update ? array('nid', 'vid') : array()));
 
   // Verify that a record was written.
   if ($status) {
@@ -108,10 +108,7 @@ function pathrevisions_save($path, $update = TRUE) {
  *   - language: (optional) The language of the alias.
  */
 function _pathrevisions_path($node) {
-  $path = array();
-  if (isset($node->path) && !empty($node->path)) {
-    $path = $node->path;
-  }
+  $path = (array) $node->path;
 
   // If pathauto is enabled, look up the newly generated alias and
   // store that instead of the old one that's still in $node.
