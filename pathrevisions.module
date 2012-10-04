@@ -39,6 +39,13 @@ function pathrevisions_node_delete($node) {
 }
 
 /**
+ * Implements hook_node_revision_delete().
+ */
+function pathrevisions_node_revision_delete($node) {
+  db_delete('path_revisions')->condition('vid', $node->vid)->execute();
+}
+
+/**
  * Load an array of path revisions from the database.
  *
  * @param $nid
