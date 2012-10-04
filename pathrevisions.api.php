@@ -69,6 +69,27 @@ function hook_pathrevisions_update($path) {
  * @see pathrevisions_delete()
  */
 function hook_pathrevisions_delete($paths) {
+  foreach ($paths as $path) {
+    db_delete('mytable')
+      ->condition(array('nid' => $path['nid'], 'vid' => $path['vid']))
+      ->execute();
+  }
+}
+
+/**
+ * Allow modules to respond to a path revision being deleted.
+ *
+ * @param $path
+ *   An associative array containing the following keys:
+ *   - nid: The node nid.
+ *   - vid: The nod vid.
+ *   - alias: The URL alias.
+ *   - pid: Unique path alias identifier.
+ *   - language: The language of the alias.
+ *
+ * @see pathrevisions_node_revision_delete()
+ */
+function hook_pathrevisions_delete_revision($path) {
   db_delete('mytable')
     ->condition(array('nid' => $path['nid'], 'vid' => $path['vid']))
     ->execute();
