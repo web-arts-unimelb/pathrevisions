@@ -1,3 +1,5 @@
 name = Pathrevisions
 description = Keeps a record of path aliases for node revisions.
 core = 7.x
+
+; files[] = views/handlers/pathrevisions_views_handler_field_alias.inc

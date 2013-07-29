@@ -32,6 +32,8 @@ class pathrevisions_views_handler_field_alias extends views_handler_field {
       '#description' => t('Enable this option to output an absolute link. Required if you want to use the path as a link destination (as in "output this field as a link" above).'),
       '#fieldset' => 'alter',
     );
+
+    return $form;
   }
 
   function query() {
